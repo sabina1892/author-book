@@ -9,8 +9,6 @@ import com.example.demo.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
-
 @Component
 public class BootstrapData implements CommandLineRunner {
     private final BookRepository bookRepository;
@@ -29,38 +27,42 @@ public class BootstrapData implements CommandLineRunner {
         eric.setFirstName("Eric");
         eric.setLastName("David");
 
-        Book bbb = new Book();
-        bbb.setTitle("Book design");
-        bbb.setIsbn("123");
+        Book ericBook = new Book();
+        ericBook.setTitle("Book design");
+        ericBook.setIsbn("123");
 
         Author saveEric = authorRepository.save(eric);
-        Book saveBbb = bookRepository.save(bbb);
-        saveEric.getBooks().add(saveBbb);
+        Book saveEricBook = bookRepository.save(ericBook);
+        saveEric.getBooks().add(saveEricBook);
+        saveEricBook.getAuthors().add(saveEric);
+
+
 
         Author john = new Author();
         john.setFirstName("John");
         john.setLastName("Smith");
 
-        Book ccc = new Book();
-        ccc.setTitle("Lacking guys");
-        ccc.setIsbn("111");
+        Book johnBook = new Book();
+        johnBook.setTitle("Lacking guys");
+        johnBook.setIsbn("111");
 
         Author saveJohn = authorRepository.save(john);
-        Book saveCcc = bookRepository.save(ccc);
-        saveJohn.getBooks().add(saveCcc);
+        Book saveJohnBook = bookRepository.save(johnBook);
+        saveJohn.getBooks().add(saveJohnBook);
+        saveJohnBook.getAuthors().add(saveJohn);
 
         Publisher publisher = new Publisher();
         publisher.setPublisherName("Arial");
         publisher.setAddress("Baku");
         Publisher publishSaved = publisherRepository.save(publisher);
-        saveBbb.setPublisher(publishSaved);
-        saveCcc.setPublisher(publishSaved);
+        saveEricBook.setPublisher(publishSaved);
+        saveJohnBook.setPublisher(publishSaved);
 
 
         authorRepository.save(saveJohn);
         authorRepository.save(saveEric);
-        bookRepository.save(saveBbb);
-        bookRepository.save(saveCcc);
+        bookRepository.save(saveEricBook);
+        bookRepository.save(saveJohnBook);
         System.out.println(authorRepository.count());
         System.out.println(bookRepository.count());
 
