@@ -1,9 +1,9 @@
-                          Author-Book Management System
+****Author-Book Management System****
 
 About the Project
 The Author-Book Management System is designed to manage authors and the books they have written. 
 
-Technologies
+_Technologies_
 This project utilizes the following technologies:
 
 Java: Programming language
@@ -20,7 +20,7 @@ Maven: For project management and dependency resolution
 
 
 
-Features
+_Features_
 
 Add new authors
 
